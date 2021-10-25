@@ -33,7 +33,6 @@ const useFetch = (url) => {
     return () => abortedCont.abort()
   }, [url])
 
-  console.log(data)
   return {
     data,
     isPending,
