@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router'
 
 const BASE_URL = `http://localhost:8000/blogs`
 
@@ -7,6 +8,7 @@ const Create = () => {
   const [body, setBody] = useState('')
   const [author, setAuthor] = useState('mario')
   const [isPending, setIsPending] = useState(false)
+  const { push } = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -20,7 +22,10 @@ const Create = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newBlog),
-    }).then(() => setIsPending(false))
+    }).then(() => {
+      setIsPending(false)
+      push('/')
+    })
   }
 
   return (
